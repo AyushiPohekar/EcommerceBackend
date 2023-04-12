@@ -4,6 +4,7 @@ import {
   loginController
 
 } from "../controllers/authController.js";
+import { requireSignIn } from "../middlewares/authMidlleware.js";
 // import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 //router object
@@ -16,6 +17,9 @@ router.post("/register", registerController);
 //LOGIN || POST
  router.post("/login", loginController);
 
-
+//protected User route auth
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 export default router;
