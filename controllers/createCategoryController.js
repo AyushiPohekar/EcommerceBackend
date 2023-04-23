@@ -1,5 +1,6 @@
 import slugify from "slugify";
 import CategoryModel from "../models/CategoryModel.js";
+import mongoose  from "mongoose";
 
 export const createCategoryController = async (req, res) => {
   try {
@@ -80,19 +81,11 @@ export const categoryController = async (req, res) => {
 // single category
 export const SingleCategoryController = async (req, res) => {
   try {
-    const {id}=req.params.id
-      const category = await CategoryModel.findOne({ id});
-      console.log(category)
-    
- console.log(req.params)
-    const singlecategory = await CategoryModel.findOne({ id});
-
-   
-   
+    const category = await CategoryModel.findOne({ slug: req.params.slug });
     res.status(200).send({
       success: true,
-      message: "Single Category Fetched",
-      singlecategory,
+      message: "Get SIngle Category SUccessfully",
+      category,
     });
   } catch (error) {
     console.log(error);

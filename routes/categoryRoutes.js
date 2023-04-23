@@ -31,9 +31,12 @@ router.get(
 
   //get single Category
 router.get(
-    "/single-category/:id",
+    "/single-category/:slug",
    SingleCategoryController
   );
+
+  
+
 
   //delete category
 router.delete(
